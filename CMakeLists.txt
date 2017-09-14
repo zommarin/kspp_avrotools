@@ -67,7 +67,6 @@ else () #LINUX
             ${Boost_FILESYSTEM_LIBRARY}
             ${Boost_SYSTEM_LIBRARY}
             pthread
-            rt
             c
             )
 
