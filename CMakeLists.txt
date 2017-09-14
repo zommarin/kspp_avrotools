@@ -45,21 +45,20 @@ if (WIN32)
     SET(CSI_LIBS ${CSI_AVRO_LIBS} ${CSI_BOOST_LIBS} ${ZLIB_LIBS} crypt32 Ws2_32 legacy_stdio_definitions)
 
 elseif (APPLE)
-    find_package(Boost COMPONENTS log_setup log thread program_options filesystem system REQUIRED)
+    find_package(Boost COMPONENTS program_options filesystem system REQUIRED)
     set(BOOST_LIBS
             ${Boost_PROGRAM_OPTIONS_LIBRARY}
             ${Boost_FILESYSTEM_LIBRARY}
             ${Boost_SYSTEM_LIBRARY}
             pthread
-            rt
             c
             )
+    find_package(AvroCPP REQUIRED)
 
-    add_definitions(-DBOOST_LOG_DYN_LINK)
-
+    SET(CSI_INCLUDE_PATH ${Boost_INCLUDE_DIR} ${AVRO_INCLUDE_DIRS})
+    SET(CSI_LIBS ${AVRO_LIBRARIES} ${BOOST_LIBS})
     set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/lib)
     SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
-    SET(CSI_LIBS ${BOOST_LIBS})
     #END APPLE
 else () #LINUX
     find_package(Boost COMPONENTS program_options filesystem system REQUIRED)
