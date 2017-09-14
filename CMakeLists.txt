@@ -51,6 +51,7 @@ elseif (APPLE)
             ${Boost_FILESYSTEM_LIBRARY}
             ${Boost_SYSTEM_LIBRARY}
             pthread
+            avrocpp
             c
             )
     find_package(AvroCPP REQUIRED)
